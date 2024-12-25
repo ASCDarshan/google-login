@@ -1,25 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import { useGoogleLogin } from "@react-oauth/google";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => console.log(codeResponse),
+    flow: "auth-code",
+  });
+  return <button onClick={() => login()}>Sign in with Google 🚀</button>;
 }
 
 export default App;
